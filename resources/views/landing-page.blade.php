@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SYNAGLO - AI-Powered Biofeedback Glove for Early Depression Detection</title>
-    <meta name="description" content="SYNAGLO - Innovative AI-powered biofeedback glove for early detection of hidden depression disorders. Real-time mental health monitoring.">
+    <meta name="description"
+        content="SYNAGLO - Innovative AI-powered biofeedback glove for early detection of hidden depression disorders. Real-time mental health monitoring.">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="main-nav">
@@ -19,7 +23,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="logo-section">
-                    <img src="{{ asset('images/logo.png') }}" alt="SYNAGLO Logo" class="nav-logo">
+                <img src="{{ asset('images/logo.png') }}" alt="SYNAGLO Logo" class="nav-logo">
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
@@ -33,7 +37,7 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- Mobile Menu Overlay (Blur Background) -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
@@ -49,11 +53,11 @@
                     Early Depression Detection with AI Technology
                 </h1>
                 <p class="hero-subtitle">
-                    AI-Powered Biofeedback Glove for Early Detection of Hidden Depression Disorders. 
+                    AI-Powered Biofeedback Glove for Early Detection of Hidden Depression Disorders.
                     Real-time mental health monitoring with advanced technology.
                 </p>
                 <div class="hero-actions">
-                    <a href="dashboard.html" class="btn-hero-primary">
+                    <a href="/dashboard" class="btn-hero-primary">
                         <i class="fas fa-play"></i>
                         Start Monitoring
                     </a>
@@ -93,21 +97,26 @@
             <div class="section-header">
                 <h2 class="section-title">About SYNAGLO</h2>
                 <p class="section-subtitle">
-                    Innovative solution for early detection of hidden depression disorders using biofeedback and AI technology
+                    Innovative solution for early detection of hidden depression disorders using biofeedback and AI
+                    technology
                 </p>
             </div>
             <div class="about-content">
                 <div class="about-text">
                     <h3>Why SYNAGLO?</h3>
                     <p>
-                        SYNAGLO is a revolutionary biofeedback glove that uses Artificial Intelligence technology 
-                        to detect early signs of hidden depression disorders. By combining advanced physiological sensors 
-                        and cutting-edge AI algorithms, SYNAGLO provides accurate and real-time mental health monitoring.
+                        SYNAGLO is a revolutionary biofeedback glove that uses Artificial Intelligence technology
+                        to detect early signs of hidden depression disorders. By combining advanced physiological
+                        sensors
+                        and cutting-edge AI algorithms, SYNAGLO provides accurate and real-time mental health
+                        monitoring.
                     </p>
                     <p>
-                        Hidden depression often goes undetected because its symptoms are not always clearly visible. 
-                        SYNAGLO addresses this problem by measuring various physiological parameters such as Heart Rate Variability (HRV), 
-                        Galvanic Skin Response (GSR), body temperature, and physical activity to provide a comprehensive picture 
+                        Hidden depression often goes undetected because its symptoms are not always clearly visible.
+                        SYNAGLO addresses this problem by measuring various physiological parameters such as Heart Rate
+                        Variability (HRV),
+                        Galvanic Skin Response (GSR), body temperature, and physical activity to provide a comprehensive
+                        picture
                         of a person's mental health condition.
                     </p>
                     <div class="about-features">
@@ -153,7 +162,8 @@
                         <i class="fas fa-heartbeat"></i>
                     </div>
                     <h3>Heart Rate Variability (HRV)</h3>
-                    <p>Measures the variation in time between heartbeats to assess autonomic nervous system condition and stress levels.</p>
+                    <p>Measures the variation in time between heartbeats to assess autonomic nervous system condition
+                        and stress levels.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -188,7 +198,8 @@
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Real-time Dashboard</h3>
-                    <p>Interactive dashboard displays mental health data in real-time with easy-to-understand visualizations.</p>
+                    <p>Interactive dashboard displays mental health data in real-time with easy-to-understand
+                        visualizations.</p>
                 </div>
             </div>
         </div>
@@ -210,7 +221,7 @@
                     </div>
                     <h3>Artificial Intelligence</h3>
                     <p>
-                        Uses machine learning and deep learning to analyze physiological data patterns 
+                        Uses machine learning and deep learning to analyze physiological data patterns
                         and detect signs of depression with high accuracy.
                     </p>
                 </div>
@@ -220,7 +231,7 @@
                     </div>
                     <h3>Biofeedback Sensors</h3>
                     <p>
-                        Advanced sensors integrated into the glove measure various physiological parameters 
+                        Advanced sensors integrated into the glove measure various physiological parameters
                         non-invasively and in real-time.
                     </p>
                 </div>
@@ -350,4 +361,5 @@
 
     <script src="{{ asset('js/index.js') }}"></script>
 </body>
+
 </html>

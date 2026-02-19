@@ -9,8 +9,80 @@ use App\Models\RecordingHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class AnalyticsController extends Controller
+class ApiAnalyticsController extends Controller
 {
+    /**
+     * AI Health Insights Summary
+     * Endpoint: /api/analytics/ai-summary
+     * Returns a text summary for AI insights section
+     */
+    public function aiSummary()
+    {
+        file_put_contents(storage_path('logs/prompt.txt'), 'aiSummary called');
+        try {
+            file_put_contents(storage_path('logs/prompt.txt'), 'aiSummary called');
+            $apiKey = config('services.gemini.api_key');
+            if (!$apiKey) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Gemini API Key is missing in environment',
+                ], 500);
+            }
+            // Always use dummy data for AI insights
+            $latestSummary = (object) [
+                'overall_health_score' => 78,
+                'avg_stress' => 32.5,
+                'avg_heart_rate' => 74,
+                'avg_hrv' => 56,
+                'avg_spo2' => 97,
+                'total_readings' => 100,
+                'date' => Carbon::now(),
+            ];
+
+            // Log before composing prompt
+            \Log::info('AI Insights: Composing prompt...');
+            // Analysis Section
+            $insights = "Here is your health analysis for today:\n\n";
+            $insights .= "📊 **Key Metrics**:\n";
+            $insights .= "- **Health Score**: " . $latestSummary->overall_health_score . " (Good)\n";
+            $insights .= "- **Stress Level**: " . $latestSummary->avg_stress . " (Normal)\n";
+            $insights .= "- **Heart Rate**: " . $latestSummary->avg_heart_rate . " BPM\n\n";
+
+            // Detailed Interpretation
+            $insights .= "🧠 **Analysis**:\n";
+            if ($latestSummary->overall_health_score >= 80) {
+                $insights .= "Your health metrics are looking great today! Your heart rate variability indicates strong recovery and resilience to stress.\n\n";
+            } elseif ($latestSummary->overall_health_score >= 60) {
+                $insights .= "You're doing well, but there is room for improvement. Your stress levels are slightly elevated, which might be impacting your overall score.\n\n";
+            } else {
+                $insights .= "Your metrics suggest your body is under some strain. It's important to prioritize recovery today.\n\n";
+            }
+
+            // Actionable Suggestions
+            $insights .= "💡 **Suggestions & Tips**:\n";
+            $insights .= "1. **Hydration**: Drink a glass of water right now. Proper hydration improves HRV and cognitive function.\n";
+            $insights .= "2. **Mindfulness**: " . ($latestSummary->avg_stress > 40 ? "Since your stress is a bit high, try a 5-minute breathing exercise." : "Continue your balanced routine to maintain low stress levels.") . "\n";
+            $insights .= "3. **Movement**: Aim for a short walk this afternoon to boost circulation and metabolic health.\n";
+            $insights .= "4. **Sleep**: Try to get to bed 30 minutes earlier tonight to improve your recovery score for tomorrow.\n";
+
+            // Log the prompt for debugging
+            \Log::info('AI Insights Prompt:', ['prompt' => $insights]);
+
+            file_put_contents(storage_path('logs/prompt.txt'), $insights);
+
+            return response()->json([
+                'success' => true,
+                'insights' => $insights,
+                'prompt' => $insights,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to generate AI insights',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
     /**
      * Get analytics summary (overall health score & avg stress)
      * 
@@ -130,6 +202,9 @@ class AnalyticsController extends Controller
             }
 
             $hourlyData = $latestSummary->hourly_data;
+            if (is_string($hourlyData)) {
+                $hourlyData = json_decode($hourlyData, true);
+            }
 
             // Prepare heart rate analysis
             $heartRateAnalysis = [
@@ -246,12 +321,15 @@ class AnalyticsController extends Controller
         if (!$latestSummary || !$latestSummary->hourly_data) {
             return [];
         }
-
+        $hourlyData = $latestSummary->hourly_data;
+        if (is_string($hourlyData)) {
+            $hourlyData = json_decode($hourlyData, true);
+        }
         return [
-            'labels' => array_column($latestSummary->hourly_data, 'label'),
-            'heart_rate' => array_column($latestSummary->hourly_data, 'avg_heart_rate'),
-            'stress' => array_column($latestSummary->hourly_data, 'avg_stress'),
-            'hrv' => array_column($latestSummary->hourly_data, 'avg_hrv'),
+            'labels' => array_column($hourlyData, 'label'),
+            'heart_rate' => array_column($hourlyData, 'avg_heart_rate'),
+            'stress' => array_column($hourlyData, 'avg_stress'),
+            'hrv' => array_column($hourlyData, 'avg_hrv'),
         ];
     }
 
@@ -297,13 +375,13 @@ class AnalyticsController extends Controller
     private function getPeakHour($hourlyData, $metric)
     {
         $maxValue = max(array_column($hourlyData, $metric));
-        
+
         foreach ($hourlyData as $data) {
             if ($data[$metric] == $maxValue) {
                 return $data['label'];
             }
         }
-        
+
         return null;
     }
 }

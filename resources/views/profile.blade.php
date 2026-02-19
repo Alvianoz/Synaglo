@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Top Header -->
     <header class="top-header">
@@ -38,8 +40,8 @@
                     <i class="fas fa-user"></i>
                 </div>
             </div>
-            <h2 class="profile-name">Synaglo User</h2>
-            <p class="profile-email">user@synaglo.com</p>
+            <h2 class="profile-name">{{ $user->name }}</h2>
+            <p class="profile-email">{{ $user->email }}</p>
             <div class="profile-badge">
                 <i class="fas fa-star"></i>
                 <span>Active User</span>
@@ -49,15 +51,15 @@
         <!-- Profile Stats -->
         <section class="profile-stats">
             <div class="stat-item">
-                <div class="stat-value">--</div>
+                <div class="stat-value">{{ $daysActive }}</div>
                 <div class="stat-label">Days Active</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value">--</div>
+                <div class="stat-value">{{ $totalSessions }}</div>
                 <div class="stat-label">Sessions</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value">--</div>
+                <div class="stat-value">{{ $healthScore ?? '--' }}</div>
                 <div class="stat-label">Health Score</div>
             </div>
         </section>
@@ -87,6 +89,16 @@
                     </div>
                     <i class="fas fa-chevron-right"></i>
                 </div>
+                <div class="menu-item" onclick="document.getElementById('logout-form').submit();">
+                    <div class="menu-item-left">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
 
             <div class="menu-section">
@@ -140,8 +152,9 @@
     <!-- API Integration Scripts -->
     <script src="{{ asset('js/api-integration.js') }}"></script>
     <script src="{{ asset('js/profile-integration.js') }}"></script>
-    
+
     <!-- Navbar Component -->
     <script src="{{ asset('js/components/navbar.js') }}"></script>
 </body>
+
 </html>

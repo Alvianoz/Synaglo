@@ -11,36 +11,44 @@
 }
 
 :root {
-    /* Color Palette - Soft Blue/Cyan Theme */
-    --primary-color: #7fb0c9;
-    --primary-dark: #5a9bb8;
-    --primary-light: #a8c9db;
-    --secondary-color: #b3d5e4;
-    --accent-color: #7fb0c9;
-    --danger-color: #ef4444;
-    --warning-color: #f59e0b;
+    /* Color Palette - SynaWatch Vivid Purple Theme */
+    --primary-color: #8B5CF6; /* Violet */
+    --primary-dark: #7C3AED;
+    --primary-light: #A78BFA;
+    --secondary-color: #C4B5FD;
+    --accent-color: #F472B6; /* Pinkish accent */
+    --danger-color: #EF4444;
+    --warning-color: #FBBF24;
+    --success-color: #34D399;
     
     /* Background Colors */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f4fafd;
-    --bg-card: #ffffff;
-    --bg-light: #e5f3f9;
-    --bg-medium: #d1e8f0;
-    --text-primary: #1e293b;
-    --text-secondary: #475569;
-    --text-light: #64748b;
-    --border-color: #d1e8f0;
+    --bg-primary: #4C1D95; /* Deep Purple */
+    --bg-gradient: linear-gradient(180deg, #6B21A8 0%, #C084FC 100%); /* Vivid Purple Gradient */
+    --bg-card: linear-gradient(180deg, #6B21A8 0%, #C084FC 100%); /* More transparent for dark bg */
+    --bg-glass: rgba(255, 255, 255, 0.1);
+    
+    /* Text Colors */
+    --text-primary: #FFFFFF; /* White for dark background */
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-light: rgba(255, 255, 255, 0.6);
+    --text-white: #FFFFFF;
+    
+    /* Borders */
+    --border-color: rgba(255, 255, 255, 0.2);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #7fb0c9 0%, #b3d5e4 100%);
-    --gradient-secondary: linear-gradient(135deg, #b3d5e4 0%, #d1e8f0 100%);
-    --gradient-success: linear-gradient(135deg, #7fb0c9 0%, #a8c9db 100%);
-    
+    --gradient-primary: linear-gradient(135deg, #8B5CF6 0%, #C4B5FD 100%);
+    --gradient-secondary: linear-gradient(135deg, #C4B5FD 0%, #E0E7FF 100%);
+    --gradient-accent: linear-gradient(135deg, #F472B6 0%, #A78BFA 100%);
+    --gradient-glow: radial-gradient(circle at 50% -20%, rgba(139, 92, 246, 0.4), rgba(0, 0, 0, 0));
+
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
     
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -76,7 +84,8 @@
 
 body {
     font-family: var(--font-family);
-    background: var(--bg-secondary);
+    background: url('/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: var(--text-primary);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -84,12 +93,12 @@ body {
     padding-bottom: 75px; /* Space for bottom nav */
     min-height: 100vh;
     overflow-x: hidden; /* Prevent horizontal scroll */
-    background: #f4fafd;
 }
 
 /* Hide scrollbars but keep scrolling */
 html, body {
     scrollbar-width: none;
+    background-color: var(--bg-primary);
 }
 
 html::-webkit-scrollbar,
@@ -101,17 +110,18 @@ body::-webkit-scrollbar {
    Top Header
    ============================================ */
 .top-header {
-    background: #f4fafd;
-    border-bottom: 1px solid var(--border-color);
-    position: fixed !important; /* Force fixed position - don't allow override */
+    background: #f4fafd; 
+    border-bottom: var(--glass-border);
+    position: fixed !important; 
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
     z-index: 10001;
     box-shadow: var(--shadow-sm);
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    color: #4C1D95;
 }
 
 .header-content {
@@ -124,10 +134,11 @@ body::-webkit-scrollbar {
     gap: var(--spacing-xs);
 }
 
+
 .time-display {
     font-size: var(--font-size-sm);
     font-weight: 600;
-    color: var(--text-primary);
+    color: #4C1D95;
     min-width: 45px;
 }
 
@@ -208,7 +219,7 @@ body::-webkit-scrollbar {
 
 .header-title .subtitle {
     font-size: var(--font-size-xs);
-    color: var(--text-secondary);
+    color: #4C1D95;
     font-weight: 400;
     margin-top: var(--spacing-xs);
 }
@@ -306,14 +317,16 @@ body::-webkit-scrollbar {
    ============================================ */
 .biometric-card {
     background: var(--bg-card);
-    border-radius: var(--radius-lg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: var(--radius-xl); /* More rounded */
     padding: var(--spacing-xl);
     margin-bottom: var(--spacing-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-glass);
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-md);
-    border: 1px solid var(--border-color);
+    border: var(--glass-border);
 }
 
 .biometric-item {
@@ -397,11 +410,13 @@ body::-webkit-scrollbar {
 
 .chart-card {
     background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    border: var(--glass-border);
 }
 
 .chart-header {
@@ -444,14 +459,16 @@ body::-webkit-scrollbar {
 
 .metric-card {
     background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
     transition: transform var(--transition-base), box-shadow var(--transition-base);
-    border: 1px solid var(--border-color);
+    border: var(--glass-border);
     position: relative;
     overflow: hidden;
 }
@@ -583,14 +600,16 @@ body::-webkit-scrollbar {
 
 .indicator-card {
     background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
     transition: transform var(--transition-base), box-shadow var(--transition-base);
-    border: 1px solid var(--border-color);
+    border: var(--glass-border);
     position: relative;
     overflow: hidden;
 }
@@ -676,7 +695,7 @@ body::-webkit-scrollbar {
 .progress-bar {
     width: 100%;
     height: 8px;
-    background: var(--bg-light);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: var(--radius-full);
     overflow: hidden;
 }
@@ -885,8 +904,10 @@ body::-webkit-scrollbar {
     right: 0;
     background: #f4fafd;
     border-top: 1px solid var(--border-color);
+    border-radius: 50px;
     box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
     z-index: 10001;
+    margin-bottom: 10px;
     padding: var(--spacing-xs) 0;
     padding-bottom: calc(var(--spacing-xs) + env(safe-area-inset-bottom));
     backdrop-filter: none !important;
@@ -908,11 +929,11 @@ body::-webkit-scrollbar {
     align-items: center;
     gap: 4px;
     text-decoration: none;
-    color: var(--text-secondary);
+    color: #667eea;
     transition: color var(--transition-fast);
     flex: 1;
     padding: var(--spacing-xs);
-    border-radius: var(--radius-md);
+    border-radius: 50px;
 }
 
 .nav-item:hover {
@@ -1284,6 +1305,7 @@ body::-webkit-scrollbar {
         align-items: center;
         flex-direction: row;
         width: 100%;
+        color: #667eea;
     }
     
     .legend-color {
@@ -1295,6 +1317,7 @@ body::-webkit-scrollbar {
     
     .legend-color i {
         font-size: var(--font-size-xl);
+        
     }
     
     .legend-content {

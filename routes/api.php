@@ -2,8 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GeminiChatController;
+use App\Http\Controllers\Api\ApiAnalyticsController;
+
+Route::post('/auth/register', [AuthController::class, 'register']);
+Route::post('/auth/login', [AuthController::class, 'login']);
 use App\Http\Controllers\Api\HealthController;
-use App\Http\Controllers\Api\AnalyticsController;
 use App\Http\Controllers\Api\ProfileController;
 
 /*
@@ -21,10 +26,10 @@ use App\Http\Controllers\Api\ProfileController;
 Route::prefix('health')->group(function () {
     // GET /api/health/current - Get current/latest health readings
     Route::get('/current', [HealthController::class, 'current']);
-    
+
     // GET /api/health/stream?period=today&limit=50 - Get continuous data for charts
     Route::get('/stream', [HealthController::class, 'stream']);
-    
+
     // GET /api/health/metrics?start_time=...&end_time=... - Get health metrics for time range
     Route::get('/metrics', [HealthController::class, 'metrics']);
 });
@@ -32,25 +37,34 @@ Route::prefix('health')->group(function () {
 // Analytics Endpoints
 Route::prefix('analytics')->group(function () {
     // GET /api/analytics/summary - Overall health score & avg stress
-    Route::get('/summary', [AnalyticsController::class, 'summary']);
-    
+    Route::get('/summary', [ApiAnalyticsController::class, 'summary']);
+
     // GET /api/analytics/trends?period=today - Get trends data (today/week/month)
-    Route::get('/trends', [AnalyticsController::class, 'trends']);
-    
+    Route::get('/trends', [ApiAnalyticsController::class, 'trends']);
+
     // GET /api/analytics/detailed - Detailed metrics (HR analysis, stress pattern)
-    Route::get('/detailed', [AnalyticsController::class, 'detailed']);
-    
+    Route::get('/detailed', [ApiAnalyticsController::class, 'detailed']);
+
     // GET /api/analytics/history?period=today&limit=20 - Recording history
-    Route::get('/history', [AnalyticsController::class, 'history']);
+    Route::get('/history', [ApiAnalyticsController::class, 'history']);
+
+    // GET /api/analytics/ai-summary - AI health insights summary
+    Route::get('/ai-summary', [ApiAnalyticsController::class, 'aiSummary']);
 });
 
 // Profile Endpoints
 Route::prefix('profile')->group(function () {
     // GET /api/profile/stats - User statistics (days active, sessions, health score)
     Route::get('/stats', [ProfileController::class, 'stats']);
-    
+
     // GET /api/profile/health-trends - Health trends for profile page
     Route::get('/health-trends', [ProfileController::class, 'healthTrends']);
+});
+
+// Gemini Chat Endpoints
+Route::prefix('gemini')->group(function () {
+    // POST /api/gemini/chat - Send message to Gemini AI
+    Route::post('/chat', [GeminiChatController::class, 'sendMessage']);
 });
 
 // Root API endpoint - API info

@@ -6,7 +6,15 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Http\\Controllers\\Api\\AnalyticsController' => $baseDir . '/app/Http/Controllers/Api/AnalyticsController.php',
+    'App\\Http\\Controllers\\Api\\HealthController' => $baseDir . '/app/Http/Controllers/Api/HealthController.php',
+    'App\\Http\\Controllers\\Api\\ProfileController' => $baseDir . '/app/Http/Controllers/Api/ProfileController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\GeminiChatController' => $baseDir . '/app/Http/Controllers/GeminiChatController.php',
+    'App\\Http\\Middleware\\EnsureUserHasAccess' => $baseDir . '/app/Http/Middleware/EnsureUserHasAccess.php',
+    'App\\Models\\AnalyticsSummary' => $baseDir . '/app/Models/AnalyticsSummary.php',
+    'App\\Models\\HealthReading' => $baseDir . '/app/Models/HealthReading.php',
+    'App\\Models\\RecordingHistory' => $baseDir . '/app/Models/RecordingHistory.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -132,7 +140,10 @@ return array(
     'Cron\\MinutesField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
+    'Database\\Seeders\\AnalyticsSummarySeeder' => $baseDir . '/database/seeders/AnalyticsSummarySeeder.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
+    'Database\\Seeders\\HealthReadingSeeder' => $baseDir . '/database/seeders/HealthReadingSeeder.php',
+    'Database\\Seeders\\RecordingHistorySeeder' => $baseDir . '/database/seeders/RecordingHistorySeeder.php',
     'DateError' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
     'DateException' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
     'DateInvalidOperationException' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',

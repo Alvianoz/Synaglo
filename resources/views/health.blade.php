@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <!-- Top Header -->
     <header class="top-header">
@@ -35,11 +37,11 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        
+
         <!-- Current Readings Grid -->
         <section class="current-readings">
             <h2 class="section-title">Current Readings</h2>
-            
+
             <div class="readings-grid">
                 <!-- Heart Rate -->
                 <div class="reading-card heart-rate">
@@ -124,21 +126,21 @@
         <!-- Real-time Chart -->
         <section class="realtime-chart-section">
             <h2 class="section-title">Real-time Monitoring</h2>
-            
+
             <div class="chart-card">
                 <div class="chart-controls">
                     <div class="chart-legend">
                         <span class="legend-item">
                             <span class="legend-color" style="background:#ef4444;"></span>
-                            Heart Rate
+                            <p style="color: #667eea;">Heart Rate</p>
                         </span>
                         <span class="legend-item">
                             <span class="legend-color" style="background:#3b82f6;"></span>
-                            SpO2
+                            <p style="color: #667eea;">SpO2</p>
                         </span>
                         <span class="legend-item">
                             <span class="legend-color" style="background:#8b5cf6;"></span>
-                            Stress
+                            <p style="color: #667eea;">Stress</p>
                         </span>
                     </div>
                 </div>
@@ -151,7 +153,7 @@
         <!-- Health Insights -->
         <section class="health-insights">
             <h2 class="section-title">Health Insights</h2>
-            
+
             <div class="insights-grid">
                 <div class="insight-card">
                     <div class="insight-icon" style="background: #dbeafe; color: #1e40af;">
@@ -192,7 +194,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/components/navbar.js') }}"></script>
-    
+
     <script>
         // Dummy data generator
         let chart;
@@ -202,12 +204,12 @@
             stress: [],
             labels: []
         };
-        
+
         // Initialize chart
         function initChart() {
             const ctx = document.getElementById('realtimeChart');
             if (!ctx) return;
-            
+
             chart = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -287,21 +289,21 @@
                 }
             });
         }
-        
+
         // Generate random data
         function generateDummyData() {
             const now = new Date();
-            const timeLabel = now.toLocaleTimeString('en-US', { 
-                hour: '2-digit', 
+            const timeLabel = now.toLocaleTimeString('en-US', {
+                hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit'
             });
-            
+
             // Generate realistic values
             const hr = 65 + Math.random() * 15;
             const spo2 = 96 + Math.random() * 3;
             const stress = 25 + Math.random() * 20;
-            
+
             // Update display values
             document.getElementById('heartRate').textContent = Math.round(hr);
             document.getElementById('spO2').textContent = spo2.toFixed(1);
@@ -309,13 +311,13 @@
             document.getElementById('hrv').textContent = Math.round(80 - stress * 0.5);
             document.getElementById('gsr').textContent = (2.5 + Math.random() * 0.6).toFixed(1);
             document.getElementById('temperature').textContent = (36.3 + Math.random() * 0.4).toFixed(1);
-            
+
             // Add to chart
             dataPoints.labels.push(timeLabel);
             dataPoints.heartRate.push(hr);
             dataPoints.spo2.push(spo2);
             dataPoints.stress.push(stress);
-            
+
             // Keep only last 20 points
             if (dataPoints.labels.length > 20) {
                 dataPoints.labels.shift();
@@ -323,7 +325,7 @@
                 dataPoints.spo2.shift();
                 dataPoints.stress.shift();
             }
-            
+
             // Update chart
             if (chart) {
                 chart.data.labels = dataPoints.labels;
@@ -333,42 +335,42 @@
                 chart.update('none'); // No animation for smoother updates
             }
         }
-        
+
         // Recording state
         let isRecording = false;
         let recordingInterval;
-        
+
         // Record button handler
-        document.getElementById('recordBtn')?.addEventListener('click', function() {
+        document.getElementById('recordBtn')?.addEventListener('click', function () {
             isRecording = !isRecording;
-            
+
             if (isRecording) {
                 this.innerHTML = '<i class="fas fa-stop"></i><span>Stop Recording</span>';
                 this.classList.add('recording');
-                
+
                 // Start generating data every 2 seconds
                 recordingInterval = setInterval(generateDummyData, 2000);
                 generateDummyData(); // Initial data
             } else {
                 this.innerHTML = '<i class="fas fa-circle"></i><span>Start Recording</span>';
                 this.classList.remove('recording');
-                
+
                 // Stop generating data
                 clearInterval(recordingInterval);
             }
         });
-        
+
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initChart();
-            
+
             // Generate initial dummy data
             for (let i = 0; i < 10; i++) {
                 generateDummyData();
             }
         });
     </script>
-    
+
     <style>
         .record-btn {
             background: #ef4444;
@@ -383,78 +385,87 @@
             gap: 8px;
             transition: all 0.3s;
         }
-        
+
         .record-btn:hover {
             background: #dc2626;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
         }
-        
+
         .record-btn.recording {
             background: #3b82f6;
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.7;
             }
         }
-        
+
         .current-readings {
             margin: 24px 0;
         }
-        
+
         .readings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px;
             margin-top: 16px;
         }
-        
+
         .reading-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
             gap: 16px;
-            border-left: 4px solid #e5e7eb;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left-width: 4px;
             transition: transform 0.2s;
+            color: white;
         }
-        
+
         .reading-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
         }
-        
+
         .reading-card.heart-rate {
             border-left-color: #ef4444;
         }
-        
+
         .reading-card.spo2 {
             border-left-color: #3b82f6;
         }
-        
+
         .reading-card.hrv {
             border-left-color: #10b981;
         }
-        
+
         .reading-card.stress {
             border-left-color: #8b5cf6;
         }
-        
+
         .reading-card.gsr {
             border-left-color: #f59e0b;
         }
-        
+
         .reading-card.temp {
             border-left-color: #ec4899;
         }
-        
+
         .reading-icon {
             width: 50px;
             height: 50px;
@@ -463,34 +474,34 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            background: #f3f4f6;
-            color: #6b7280;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
-        
+
         .reading-content {
             flex: 1;
         }
-        
+
         .reading-label {
             font-size: 0.85rem;
-            color: #6b7280;
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 500;
             margin-bottom: 8px;
         }
-        
+
         .reading-value {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #111827;
+            color: white;
             line-height: 1;
         }
-        
+
         .reading-unit {
             font-size: 0.9rem;
-            color: #9ca3af;
+            color: rgba(255, 255, 255, 0.6);
             margin-top: 4px;
         }
-        
+
         .reading-status {
             display: inline-block;
             padding: 4px 12px;
@@ -499,55 +510,59 @@
             font-weight: 600;
             margin-top: 8px;
         }
-        
+
         .status-excellent {
-            background: #d1fae5;
-            color: #065f46;
+            background: rgba(16, 185, 129, 0.2);
+            color: #34D399;
         }
-        
+
         .status-good {
-            background: #dbeafe;
-            color: #1e40af;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60A5FA;
         }
-        
+
         .status-normal {
-            background: #e0e7ff;
-            color: #4338ca;
+            background: rgba(99, 102, 241, 0.2);
+            color: #818CF8;
         }
-        
+
         .status-low {
-            background: #ddd6fe;
-            color: #6d28d9;
+            background: rgba(139, 92, 246, 0.2);
+            color: #A78BFA;
         }
-        
+
         .realtime-chart-section {
             margin: 32px 0;
         }
-        
+
         .chart-controls {
             margin-bottom: 16px;
         }
-        
+
         .health-insights {
             margin: 32px 0;
         }
-        
+
         .insights-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 16px;
             margin-top: 16px;
         }
-        
+
         .insight-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
             gap: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
         }
-        
+
         .insight-icon {
             width: 50px;
             height: 50px;
@@ -558,19 +573,20 @@
             font-size: 1.5rem;
             flex-shrink: 0;
         }
-        
+
         .insight-content h3 {
             font-size: 1rem;
             font-weight: 600;
-            color: #111827;
+            color: white;
             margin-bottom: 8px;
         }
-        
+
         .insight-content p {
             font-size: 0.9rem;
-            color: #6b7280;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.5;
         }
     </style>
 </body>
+
 </html>
