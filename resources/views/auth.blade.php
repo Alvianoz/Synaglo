@@ -60,7 +60,6 @@
             font-size: var(--font-size-sm);
             font-weight: 600;
             margin-bottom: var(--spacing-xs);
-            color: white;
         }
 
         .form-input {

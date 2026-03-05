@@ -59,6 +59,6 @@ Route::middleware(['access'])->group(function () {
     // AI Analytics Summary
     // Route::get('/api/analytics/ai-summary', [App\Http\Controllers\AnalyticsController::class, 'getAiSummary']);
 
-    Route::get('/gemini-chat', [App\Http\Controllers\GeminiChatController::class, 'index']);
-    Route::post('/gemini-chat/send', [App\Http\Controllers\GeminiChatController::class, 'sendMessage']);
+    Route::get('/synachat', [App\Http\Controllers\GeminiChatController::class, 'index']);
+    Route::post('/synachat/send', [App\Http\Controllers\GeminiChatController::class, 'sendMessage']);
 });

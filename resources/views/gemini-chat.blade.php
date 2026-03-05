@@ -19,7 +19,7 @@
         <div class="header-content">
             <div class="header-title">
                 <div class="logo-container">
-                    <img src="{{ asset('images/logo.png') }}" alt="SYNAGLO Logo" class="header-logo-small">
+                    <img src="{{ asset('images/logo.png') }}" alt="SYNAWATCH Logo" class="header-logo-small">
                     <div class="logo-text">
                         <h1>Health Recommendations</h1>
                         <p class="subtitle">Personal suggestions for your health</p>
@@ -37,7 +37,7 @@
             <div class="avatar-section">
                 <div id="avatarContainer" class="avatar-container"></div>
                 <div class="avatar-info">
-                    <p>Dr. Gemini</p>
+                    <p>Dr. Synachat</p>
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
                                 <i class="fas fa-robot"></i>
                             </div>
                             <div class="chat-header-text">
-                                <h3>Dr. Gemini</h3>
+                                <h3>Dr. Synachat</h3>
                                 <p>AI Health Assistant</p>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                             <div class="welcome-icon">
                                 <i class="fas fa-robot"></i>
                             </div>
-                            <h3>Welcome to Dr. Gemini</h3>
+                            <h3>Welcome to Dr. Synachat</h3>
                             <p>Ask me anything about your health. I'm here to help with personalized health guidance.
                             </p>
                             <small>Note: I'm an AI assistant, not a replacement for professional medical advice.</small>
@@ -118,7 +118,7 @@
     <script>
         // Chat Configuration
         const chatConfig = {
-            messageEndpoint: '/gemini-chat/send',
+            messageEndpoint: '/synachat/send',
             maxMessages: 50,
             typingSpeed: 30 // ms per character for typing effect
         };
@@ -484,7 +484,7 @@
                         <div class="welcome-icon">
                             <i class="fas fa-robot"></i>
                         </div>
-                        <h3>Welcome to Dr. Gemini</h3>
+                        <h3>Welcome to Dr. Synachat</h3>
                         <p>Ask me anything about your health. I'm here to help with personalized health guidance.</p>
                         <small>Note: I'm an AI assistant, not a replacement for professional medical advice.</small>
                     </div>

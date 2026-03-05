@@ -19,7 +19,7 @@
         <div class="header-content">
             <div class="header-title">
                 <div class="logo-container">
-                    <img src="{{ asset('images/logo.png') }}" alt="SYNAGLO Logo" class="header-logo-small">
+                    <img src="{{ asset('images/logo.png') }}" alt="SYNAWATCH Logo" class="header-logo-small">
                     <div class="logo-text">
                         <h1>Health Monitor</h1>
                         <p class="subtitle">Real-time health tracking</p>
@@ -421,25 +421,25 @@
         }
 
         .reading-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
             display: flex;
             gap: 16px;
-            border-left: 4px solid rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid rgba(124, 58, 237, 0.3);
+            border: 1px solid rgba(124, 58, 237, 0.12);
             border-left-width: 4px;
             transition: transform 0.2s;
-            color: white;
+            color: #1E1B4B;
         }
 
         .reading-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.15);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .reading-card.heart-rate {
@@ -474,8 +474,8 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            background: rgba(124, 58, 237, 0.12);
+            color: #7C3AED;
         }
 
         .reading-content {
@@ -484,7 +484,7 @@
 
         .reading-label {
             font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: #6B7280;
             font-weight: 500;
             margin-bottom: 8px;
         }
@@ -492,13 +492,13 @@
         .reading-value {
             font-size: 2.5rem;
             font-weight: 700;
-            color: white;
+            color: #1E1B4B;
             line-height: 1;
         }
 
         .reading-unit {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: #9CA3AF;
             margin-top: 4px;
         }
 
@@ -512,23 +512,23 @@
         }
 
         .status-excellent {
-            background: rgba(16, 185, 129, 0.2);
-            color: #34D399;
+            background: #D1FAE5;
+            color: #065F46;
         }
 
         .status-good {
-            background: rgba(59, 130, 246, 0.2);
-            color: #60A5FA;
+            background: #DBEAFE;
+            color: #1E40AF;
         }
 
         .status-normal {
-            background: rgba(99, 102, 241, 0.2);
-            color: #818CF8;
+            background: #EDE9FE;
+            color: #5B21B6;
         }
 
         .status-low {
-            background: rgba(139, 92, 246, 0.2);
-            color: #A78BFA;
+            background: #EDE9FE;
+            color: #5B21B6;
         }
 
         .realtime-chart-section {
@@ -551,16 +551,16 @@
         }
 
         .insight-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
             display: flex;
             gap: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
+            border: 1px solid rgba(124, 58, 237, 0.12);
+            color: #1E1B4B;
         }
 
         .insight-icon {
@@ -577,13 +577,13 @@
         .insight-content h3 {
             font-size: 1rem;
             font-weight: 600;
-            color: white;
+            color: #1E1B4B;
             margin-bottom: 8px;
         }
 
         .insight-content p {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: #4B5563;
             line-height: 1.5;
         }
     </style>

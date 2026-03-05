@@ -11,44 +11,45 @@
 }
 
 :root {
-    /* Color Palette - SynaWatch Vivid Purple Theme */
-    --primary-color: #8B5CF6; /* Violet */
-    --primary-dark: #7C3AED;
+    /* Color Palette - SynaWatch Light Purple Theme */
+    --primary-color: #7C3AED; /* Vivid Purple */
+    --primary-dark: #6D28D9;
     --primary-light: #A78BFA;
-    --secondary-color: #C4B5FD;
-    --accent-color: #F472B6; /* Pinkish accent */
+    --secondary-color: #DDD6FE;
+    --accent-color: #EC4899; /* Pink accent */
     --danger-color: #EF4444;
-    --warning-color: #FBBF24;
-    --success-color: #34D399;
-    
-    /* Background Colors */
-    --bg-primary: #4C1D95; /* Deep Purple */
-    --bg-gradient: linear-gradient(180deg, #6B21A8 0%, #C084FC 100%); /* Vivid Purple Gradient */
-    --bg-card: linear-gradient(180deg, #6B21A8 0%, #C084FC 100%); /* More transparent for dark bg */
-    --bg-glass: rgba(255, 255, 255, 0.1);
-    
-    /* Text Colors */
-    --text-primary: #FFFFFF; /* White for dark background */
-    --text-secondary: rgba(255, 255, 255, 0.8);
-    --text-light: rgba(255, 255, 255, 0.6);
-    --text-white: #FFFFFF;
-    
-    /* Borders */
-    --border-color: rgba(255, 255, 255, 0.2);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
-    
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #8B5CF6 0%, #C4B5FD 100%);
-    --gradient-secondary: linear-gradient(135deg, #C4B5FD 0%, #E0E7FF 100%);
-    --gradient-accent: linear-gradient(135deg, #F472B6 0%, #A78BFA 100%);
-    --gradient-glow: radial-gradient(circle at 50% -20%, rgba(139, 92, 246, 0.4), rgba(0, 0, 0, 0));
+    --warning-color: #F59E0B;
+    --success-color: #10B981;
 
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
-    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    /* Background Colors - Light Mode */
+    --bg-primary: #F5F3FF; /* Very light lavender */
+    --bg-secondary: #EDE9FE;
+    --bg-gradient: linear-gradient(180deg, #F5F3FF 0%, #EDE9FE 100%);
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-glass: rgba(255, 255, 255, 0.7);
+
+    /* Text Colors - Dark for light background */
+    --text-primary: #1E1B4B;   /* Deep indigo */
+    --text-secondary: #4B5563;
+    --text-light: #9CA3AF;
+    --text-white: #FFFFFF;
+
+    /* Borders */
+    --border-color: rgba(124, 58, 237, 0.15);
+    --glass-border: 1px solid rgba(124, 58, 237, 0.15);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+    --gradient-secondary: linear-gradient(135deg, #A78BFA 0%, #DDD6FE 100%);
+    --gradient-accent: linear-gradient(135deg, #EC4899 0%, #A78BFA 100%);
+    --gradient-glow: radial-gradient(circle at 50% -20%, rgba(124, 58, 237, 0.15), rgba(255, 255, 255, 0));
+
+    /* Shadows - Softer for light mode */
+    --shadow-sm: 0 1px 3px 0 rgba(124, 58, 237, 0.08);
+    --shadow-md: 0 4px 6px -1px rgba(124, 58, 237, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(124, 58, 237, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(124, 58, 237, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-glass: 0 8px 32px 0 rgba(124, 58, 237, 0.1);
     
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -84,8 +85,8 @@
 
 body {
     font-family: var(--font-family);
-    background: url('/images/background.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
     color: var(--text-primary);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -98,7 +99,7 @@ body {
 /* Hide scrollbars but keep scrolling */
 html, body {
     scrollbar-width: none;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-primary); /* Light lavender */
 }
 
 html::-webkit-scrollbar,
@@ -110,7 +111,7 @@ body::-webkit-scrollbar {
    Top Header
    ============================================ */
 .top-header {
-    background: #f4fafd; 
+    background: rgba(255, 255, 255, 0.9);
     border-bottom: var(--glass-border);
     position: fixed !important; 
     top: 0;
@@ -121,7 +122,7 @@ body::-webkit-scrollbar {
     box-shadow: var(--shadow-sm);
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
-    color: #4C1D95;
+    color: var(--primary-color);
 }
 
 .header-content {
@@ -138,7 +139,7 @@ body::-webkit-scrollbar {
 .time-display {
     font-size: var(--font-size-sm);
     font-weight: 600;
-    color: #4C1D95;
+    color: var(--primary-color);
     min-width: 45px;
 }
 
@@ -153,7 +154,7 @@ body::-webkit-scrollbar {
 .logo-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: var(--spacing-md);
 }
 
@@ -169,7 +170,7 @@ body::-webkit-scrollbar {
 }
 
 .header-logo {
-    height: 30px;
+    height: 55px;
     width: auto;
     object-fit: contain;
     margin-bottom: -12px;
@@ -177,7 +178,7 @@ body::-webkit-scrollbar {
 }
 
 .header-logo-small {
-    height: 36px;
+    height: 65px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
@@ -219,7 +220,7 @@ body::-webkit-scrollbar {
 
 .header-title .subtitle {
     font-size: var(--font-size-xs);
-    color: #4C1D95;
+    color: var(--primary-color);
     font-weight: 400;
     margin-top: var(--spacing-xs);
 }
@@ -695,7 +696,7 @@ body::-webkit-scrollbar {
 .progress-bar {
     width: 100%;
     height: 8px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(124, 58, 237, 0.12);
     border-radius: var(--radius-full);
     overflow: hidden;
 }
@@ -1185,10 +1186,12 @@ body::-webkit-scrollbar {
     
     .summary-value {
         font-size: var(--font-size-2xl);
+        color: var(--text-white);
     }
     
     .summary-label {
         font-size: 11px;
+        color: var(--text-white);
     }
     
     .summary-change {

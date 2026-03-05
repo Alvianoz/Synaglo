@@ -18,7 +18,7 @@
         <div class="header-content">
             <div class="header-title">
                 <div class="logo-container">
-                    <img src="{{ asset('images/logo.png') }}" alt="SYNAGLO Logo" class="header-logo-small">
+                    <img src="{{ asset('images/logo.png') }}" alt="SYNAWATCH Logo" class="header-logo-small">
                     <div class="logo-text">
                         <h1>Profile</h1>
                         <p class="subtitle">Account settings</p>

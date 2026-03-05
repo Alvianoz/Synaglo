@@ -30,7 +30,7 @@
 
             <div class="header-title">
                 <div class="logo-container logo-container-column">
-                    <img src="{{ asset('images/logo.png') }}" alt="SYNAGLO Logo" class="header-logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="SYNAWATCH Logo" class="header-logo">
                     <p class="subtitle">Real-time monitoring</p>
                 </div>
             </div>
@@ -73,16 +73,16 @@
 
             <div class="biometric-item">
                 <div class="biometric-icon">
-                    <i class="fas fa-lungs"></i>
+                    <i class="fas fa-moon"></i>
                 </div>
                 <div class="biometric-value" id="dashboardSpO2">--</div>
                 <div class="biometric-label">
-                    Oxygen Saturation
-                    <span class="metric-explanation">(Percentage of oxygen in blood)</span>
+                    Sleep Quality
+                    <span class="metric-explanation">(Percentage of sleeping quality)</span>
                 </div>
                 <div class="biometric-status status-excellent" id="dashboardSpO2Status">Loading...</div>
                 <div class="metric-info">
-                    <small>Normal range: 95–100%</small>
+                    <small>Normal range: 90–100%</small>
                 </div>
             </div>
         </section>
@@ -210,14 +210,14 @@
                         },
                         scales: {
                             x: {
-                                ticks: { color: 'rgba(255,255,255,0.7)' },
-                                grid: { color: 'rgba(255,255,255,0.1)' }
+                                ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                                grid: { color: 'rgba(124, 58, 237, 0.08)' }
                             },
                             y: {
                                 beginAtZero: true,
                                 max: 100,
-                                ticks: { color: 'rgba(255,255,255,0.7)' },
-                                grid: { color: 'rgba(255,255,255,0.1)' }
+                                ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                                grid: { color: 'rgba(124, 58, 237, 0.08)' }
                             }
                         }
                     }
@@ -254,14 +254,14 @@
                         },
                         scales: {
                             x: {
-                                ticks: { color: 'rgba(255,255,255,0.7)' },
-                                grid: { color: 'rgba(255,255,255,0.1)' }
+                                ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                                grid: { color: 'rgba(124, 58, 237, 0.08)' }
                             },
                             y: {
                                 beginAtZero: true,
                                 max: 100,
-                                ticks: { color: 'rgba(255,255,255,0.7)' },
-                                grid: { color: 'rgba(255,255,255,0.1)' }
+                                ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                                grid: { color: 'rgba(124, 58, 237, 0.08)' }
                             }
                         }
                     }

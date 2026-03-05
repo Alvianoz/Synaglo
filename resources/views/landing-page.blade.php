@@ -23,7 +23,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="logo-section">
-                <img src="{{ asset('images/logo.png') }}" alt="SYNAGLO Logo" class="nav-logo">
+                <img src="{{ asset('images/logo.png') }}" alt="SYNAWATCH Logo" class="nav-logo">
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
@@ -49,11 +49,11 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">
-                    <span class="title-highlight">SYNAGLO</span><br>
+                    <span class="title-highlight">SYNAWATCH</span><br>
                     Early Depression Detection with AI Technology
                 </h1>
                 <p class="hero-subtitle">
-                    AI-Powered Biofeedback Glove for Early Detection of Hidden Depression Disorders.
+                    AI-Powered Biofeedback Smartwatch for Early Detection of Hidden Depression Disorders.
                     Real-time mental health monitoring with advanced technology.
                 </p>
                 <div class="hero-actions">
@@ -84,7 +84,7 @@
             <div class="hero-image">
                 <div class="hero-card">
                     <i class="fas fa-hand-holding-heart hero-icon"></i>
-                    <h3>Biofeedback Glove</h3>
+                    <h3>Biofeedback Smartwatch</h3>
                     <p>Advanced technology for mental health monitoring</p>
                 </div>
             </div>
@@ -95,7 +95,7 @@
     <section class="about-section" id="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">About SYNAGLO</h2>
+                <h2 class="section-title">About SYNAWATCH</h2>
                 <p class="section-subtitle">
                     Innovative solution for early detection of hidden depression disorders using biofeedback and AI
                     technology
@@ -103,17 +103,18 @@
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Why SYNAGLO?</h3>
+                    <h3>Why SYNAWATCH?</h3>
                     <p>
-                        SYNAGLO is a revolutionary biofeedback glove that uses Artificial Intelligence technology
+                        SYNAWATCH is a revolutionary biofeedback smartwatch that uses Artificial Intelligence technology
                         to detect early signs of hidden depression disorders. By combining advanced physiological
                         sensors
-                        and cutting-edge AI algorithms, SYNAGLO provides accurate and real-time mental health
+                        and cutting-edge AI algorithms, SYNAWATCH provides accurate and real-time mental health
                         monitoring.
                     </p>
                     <p>
                         Hidden depression often goes undetected because its symptoms are not always clearly visible.
-                        SYNAGLO addresses this problem by measuring various physiological parameters such as Heart Rate
+                        SYNAWATCH addresses this problem by measuring various physiological parameters such as Heart
+                        Rate
                         Variability (HRV),
                         Galvanic Skin Response (GSR), body temperature, and physical activity to provide a comprehensive
                         picture
@@ -153,7 +154,7 @@
             <div class="section-header">
                 <h2 class="section-title">Key Features</h2>
                 <p class="section-subtitle">
-                    Advanced features that make SYNAGLO the leading solution for mental health monitoring
+                    Advanced features that make SYNAWATCH the leading solution for mental health monitoring
                 </p>
             </div>
             <div class="features-grid">
@@ -254,7 +255,7 @@
             <div class="cta-content">
                 <h2>Ready to Start Your Mental Health Journey?</h2>
                 <p>Join SYNAGLO and get accurate, real-time mental health monitoring</p>
-                <a href="dashboard.html" class="btn-cta">
+                <a href="/dashboard" class="btn-cta">
                     <i class="fas fa-rocket"></i>
                     Get Started
                 </a>
@@ -322,9 +323,9 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="{{ asset('images/logo.png') }}" alt="SYNAGLO Logo" class="footer-logo-img">
+                        <img src="{{ asset('images/logo.png') }}" alt="SYNAWATCH Logo" class="footer-logo-img">
                     </div>
-                    <p>AI-Powered Biofeedback Glove for Early Detection of Hidden Depression Disorders</p>
+                    <p>AI-Powered Biofeedback Smartwatch for Early Detection of Hidden Depression Disorders</p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -338,9 +339,9 @@
                 <div class="footer-section">
                     <h4>Product</h4>
                     <ul>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="analytics.html">Analytics</a></li>
-                        <li><a href="health.html">Health</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/analytics">Analytics</a></li>
+                        <li><a href="/health">Health</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -354,7 +355,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 SYNAGLO. All rights reserved.</p>
+                <p>&copy; 2026 SYNAWATCH. All rights reserved.</p>
             </div>
         </div>
     </footer>

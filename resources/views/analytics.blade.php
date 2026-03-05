@@ -28,7 +28,7 @@
         <div class="header-content">
             <div class="header-title">
                 <div class="logo-container">
-                    <img src="{{ asset('images/logo.png') }}" alt="SYNAGLO Logo" class="header-logo-small">
+                    <img src="{{ asset('images/logo.png') }}" alt="SYNAWATCH Logo" class="header-logo-small">
                     <div class="logo-text">
                         <h1>Analytics</h1>
                         <p class="subtitle">Data insights & trends</p>
@@ -49,7 +49,7 @@
 
         <!-- Summary Cards -->
         <section class="summary-cards">
-            <div class="summary-card primary">
+            <div class="summary-card secondary">
                 <div class="summary-icon">
                     <i class="fas fa-chart-line"></i>
                 </div>
@@ -257,12 +257,12 @@
                     },
                     scales: {
                         x: {
-                            ticks: { color: 'rgba(255,255,255,0.7)' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
+                            ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                            grid: { color: 'rgba(124, 58, 237, 0.08)' }
                         },
                         y: {
-                            ticks: { color: 'rgba(255,255,255,0.7)' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
+                            ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                            grid: { color: 'rgba(124, 58, 237, 0.08)' }
                         }
                     }
                 }
@@ -298,12 +298,12 @@
                     },
                     scales: {
                         x: {
-                            ticks: { color: 'rgba(255,255,255,0.7)' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
+                            ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                            grid: { color: 'rgba(124, 58, 237, 0.08)' }
                         },
                         y: {
-                            ticks: { color: 'rgba(255,255,255,0.7)' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
+                            ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                            grid: { color: 'rgba(124, 58, 237, 0.08)' }
                         }
                     }
                 }
@@ -337,12 +337,12 @@
                     },
                     scales: {
                         x: {
-                            ticks: { color: 'rgba(255,255,255,0.7)' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
+                            ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                            grid: { color: 'rgba(124, 58, 237, 0.08)' }
                         },
                         y: {
-                            ticks: { color: 'rgba(255,255,255,0.7)' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
+                            ticks: { color: 'rgba(30, 27, 75, 0.6)' },
+                            grid: { color: 'rgba(124, 58, 237, 0.08)' }
                         }
                     }
                 }
@@ -426,8 +426,8 @@
         .prompt-text {
             margin-top: 10px;
             font-size: 0.95rem;
-            color: #dbeafe;
-            background: rgba(255, 255, 255, 0.08);
+            color: #4B5563;
+            background: rgba(124, 58, 237, 0.06);
             border-radius: 8px;
             padding: 8px 12px;
             white-space: pre-wrap;
@@ -470,17 +470,17 @@
         }
 
         .refresh-btn {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(124, 58, 237, 0.15);
             border: none;
             border-radius: var(--radius-md);
             padding: var(--spacing-sm) var(--spacing-md);
-            color: white;
+            color: #7C3AED;
             cursor: pointer;
             transition: all var(--transition-base);
         }
 
         .refresh-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(124, 58, 237, 0.25);
         }
 
         .start-analysis-btn {
@@ -500,7 +500,7 @@
         }
 
         .ai-insights-content {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(124, 58, 237, 0.08);
             border-radius: var(--radius-md);
             padding: var(--spacing-lg);
             min-height: 100px;
@@ -526,18 +526,18 @@
 
         /* Recording Items */
         .recording-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.85);
             padding: 15px;
             margin: 10px 0;
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.12);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
 
         .recording-time {
             font-weight: 600;
-            color: #fff;
+            color: #1E1B4B;
             margin-bottom: 8px;
         }
 
@@ -548,7 +548,7 @@
 
         .recording-duration {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: #6B7280;
             margin-bottom: 8px;
         }
 

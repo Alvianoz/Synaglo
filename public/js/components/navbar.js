@@ -26,7 +26,7 @@ const navItems = [
     {
         icon: 'fas fa-robot',
         label: 'AI',
-        href: '/gemini-chat',
+        href: '/synachat',
         id: 'nav-recommendations'
     },
     {
