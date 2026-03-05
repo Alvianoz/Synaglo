@@ -69,7 +69,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: var(--radius-md);
             font-size: var(--font-size-base);
-            color: white;
+            color: black;
         }
 
         .form-input:focus {

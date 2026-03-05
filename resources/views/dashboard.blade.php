@@ -60,7 +60,7 @@
                 <div class="biometric-icon">
                     <i class="fas fa-heart"></i>
                 </div>
-                <div class="biometric-value" id="dashboardHR">--</div>
+                <div class="biometric-value" id="dashboardHR">79</div>
                 <div class="biometric-label">
                     Heart Rate
                     <span class="metric-explanation">(Beats per minute)</span>
@@ -75,7 +75,7 @@
                 <div class="biometric-icon">
                     <i class="fas fa-moon"></i>
                 </div>
-                <div class="biometric-value" id="dashboardSpO2">--</div>
+                <div class="biometric-value" id="dashboardSpO2">96.36</div>
                 <div class="biometric-label">
                     Sleep Quality
                     <span class="metric-explanation">(Percentage of sleeping quality)</span>

@@ -10,6 +10,8 @@ Route::get('/', function () {
 // Auth API endpoints (must be in web.php for session support)
 Route::post('/api/auth/register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/api/auth/login', [App\Http\Controllers\AuthController::class, 'login']);
+Route::get('/synachat', [App\Http\Controllers\GeminiChatController::class, 'index']);
+Route::post('/synachat/send', [App\Http\Controllers\GeminiChatController::class, 'sendMessage']);
 
 Route::get('/auth', function () {
     return view('auth');
@@ -59,6 +61,5 @@ Route::middleware(['access'])->group(function () {
     // AI Analytics Summary
     // Route::get('/api/analytics/ai-summary', [App\Http\Controllers\AnalyticsController::class, 'getAiSummary']);
 
-    Route::get('/synachat', [App\Http\Controllers\GeminiChatController::class, 'index']);
-    Route::post('/synachat/send', [App\Http\Controllers\GeminiChatController::class, 'sendMessage']);
+
 });
