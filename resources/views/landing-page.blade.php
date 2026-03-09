@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYNAGLO - AI-Powered Biofeedback Glove for Early Depression Detection</title>
+    <title>SYNAWATCH - AI-Powered Biofeedback Glove for Early Depression Detection</title>
     <meta name="description"
         content="SYNAGLO - Innovative AI-powered biofeedback glove for early detection of hidden depression disorders. Real-time mental health monitoring.">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
