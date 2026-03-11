@@ -58,8 +58,11 @@ Route::middleware(['access'])->group(function () {
         return view('profile', compact('user', 'daysActive', 'totalSessions', 'healthScore'));
     });
 
-    // AI Analytics Summary
-    // Route::get('/api/analytics/ai-summary', [App\Http\Controllers\AnalyticsController::class, 'getAiSummary']);
+    Route::get('/api/analytics/ai-summary', [App\Http\Controllers\AnalyticsController::class, 'getAiSummary']);
 
+    // Health Data Routes
+    Route::post('/api/health-data', [App\Http\Controllers\HealthDataController::class, 'store']);
+    Route::get('/api/health-data/latest', [App\Http\Controllers\HealthDataController::class, 'latest']);
+    Route::get('/api/health-data/analytics', [App\Http\Controllers\HealthDataController::class, 'analytics']);
 
 });

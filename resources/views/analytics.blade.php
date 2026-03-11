@@ -201,9 +201,43 @@
     <!-- Bottom Nav -->
     <nav class="bottom-nav" id="bottomNav"></nav>
 
-    <!-- API Integration Scripts -->
-    <script src="{{ asset('js/api-integration.js') }}"></script>
-    <script src="{{ asset('js/analytics-integration.js') }}"></script>
+    <!-- Health API Script -->
+    <script src="{{ asset('js/health-api-client.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.healthApiClient) {
+                // Fetch trend data
+                window.healthApiClient.fetchAnalytics((data) => {
+                    if (data.labels && data.labels.length > 0) {
+                        updateWeeklyTrendsChart(data);
+                        updateHeartRateChart(data.labels, data.heart_rate || []);
+                        updateStressPatternChart(data.labels, data.stress || []);
+                        
+                        // Update summaries
+                        if (data.stress && data.stress.length > 0) {
+                            const avgS = Math.round(data.stress.reduce((a, b) => a + b, 0) / data.stress.length);
+                            const scoreElem = document.getElementById('healthScore');
+                            if (scoreElem) scoreElem.textContent = Math.round(100 - (avgS * 0.5));
+                            
+                            const stressElem = document.getElementById('avgStress');
+                            if (stressElem) stressElem.textContent = avgS;
+                        }
+                    }
+                });
+
+                // Poll to keep quick stats updated
+                window.healthApiClient.startPollingLatest((data) => {
+                    if (data && data.stress) {
+                        const scoreElem = document.getElementById('healthScore');
+                        if (scoreElem) scoreElem.textContent = Math.round(100 - (data.stress * 0.5));
+                        
+                        const stressElem = document.getElementById('avgStress');
+                        if (stressElem) stressElem.textContent = data.stress;
+                    }
+                });
+            }
+        });
+    </script>
 
     <!-- Navbar Component -->
     <script src="{{ asset('js/components/navbar.js') }}"></script>

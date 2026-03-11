@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>SYNAWATCH - Health Monitor</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,9 +28,9 @@
                 </div>
             </div>
             <div class="header-actions">
-                <button class="record-btn" id="recordBtn">
-                    <i class="fas fa-circle"></i>
-                    <span>Start Recording</span>
+                <button class="record-btn" id="connectBleBtn">
+                    <i class="fab fa-bluetooth-b"></i>
+                    <span>Connect SYNAWATCH</span>
                 </button>
             </div>
         </div>
@@ -91,7 +92,10 @@
                         <div class="reading-label">Stress Level</div>
                         <div class="reading-value" id="stress">32</div>
                         <div class="reading-unit">/100</div>
-                        <div class="reading-status status-low">Low</div>
+                        <div style="width: 100%; background: #e5e7eb; height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
+                            <div id="stressProgressBar" style="width: 32%; background: #8b5cf6; height: 100%; transition: width 0.3s;"></div>
+                        </div>
+                        <div class="reading-status status-low" id="stressStatus">Low</div>
                     </div>
                 </div>
 
@@ -118,6 +122,32 @@
                         <div class="reading-value" id="temperature">36.5</div>
                         <div class="reading-unit">°C</div>
                         <div class="reading-status status-normal">Normal</div>
+                    </div>
+                </div>
+
+                <!-- Activity / Accelerometer -->
+                <div class="reading-card act">
+                    <div class="reading-icon" style="background: rgba(16, 185, 129, 0.12); color: #10b981;">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="reading-content">
+                        <div class="reading-label">Motion (Accel)</div>
+                        <div class="reading-value" style="font-size: 1.25rem;" id="accelData">X: -- Y: -- Z: --</div>
+                        <div class="reading-unit">g</div>
+                        <div class="reading-status status-good" id="activityStatus">--</div>
+                    </div>
+                </div>
+
+                <!-- Gyroscope -->
+                <div class="reading-card gyro">
+                    <div class="reading-icon" style="background: rgba(245, 158, 11, 0.12); color: #f59e0b;">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <div class="reading-content">
+                        <div class="reading-label">Orientation (Gyro)</div>
+                        <div class="reading-value" style="font-size: 1.25rem;" id="gyroData">X: -- Y: -- Z: --</div>
+                        <div class="reading-unit">°/s</div>
+                        <div class="reading-status status-normal">Tracking</div>
                     </div>
                 </div>
             </div>
@@ -194,9 +224,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/components/navbar.js') }}"></script>
+    <script src="{{ asset('js/synawatch-ble.js') }}"></script>
 
     <script>
-        // Dummy data generator
+        // Data generator
         let chart;
         let dataPoints = {
             heartRate: [],
@@ -290,35 +321,89 @@
             });
         }
 
-        // Generate random data
-        function generateDummyData() {
-            const now = new Date();
-            const timeLabel = now.toLocaleTimeString('en-US', {
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
+        // Handle BLE Connection
+        const connectBtn = document.getElementById('connectBleBtn');
+        if (connectBtn) {
+            connectBtn.addEventListener('click', async () => {
+                if (!window.synawatchBle.isConnected) {
+                    await window.synawatchBle.connect();
+                } else {
+                    window.synawatchBle.disconnect();
+                }
             });
+        }
 
-            // Generate realistic values
-            const hr = 65 + Math.random() * 15;
-            const spo2 = 96 + Math.random() * 3;
-            const stress = 25 + Math.random() * 20;
+        window.addEventListener('synawatch_status', (e) => {
+            const connected = e.detail.connected;
+            if (connected) {
+                connectBtn.innerHTML = '<i class="fas fa-stop"></i><span>Disconnect SYNAWATCH</span>';
+                connectBtn.classList.add('recording');
+            } else {
+                connectBtn.innerHTML = '<i class="fab fa-bluetooth-b"></i><span>Connect SYNAWATCH</span>';
+                connectBtn.classList.remove('recording');
+                
+                if (e.detail.error) {
+                    alert('Bluetooth Error: ' + e.detail.error);
+                }
+            }
+        });
 
-            // Update display values
-            document.getElementById('heartRate').textContent = Math.round(hr);
-            document.getElementById('spO2').textContent = spo2.toFixed(1);
-            document.getElementById('stress').textContent = Math.round(stress);
-            document.getElementById('hrv').textContent = Math.round(80 - stress * 0.5);
-            document.getElementById('gsr').textContent = (2.5 + Math.random() * 0.6).toFixed(1);
-            document.getElementById('temperature').textContent = (36.3 + Math.random() * 0.4).toFixed(1);
+        // Handle real-time data from BLE
+        window.addEventListener('synawatch_data', (e) => {
+            const data = e.detail;
+
+            // Update DOM Elements
+            document.getElementById('heartRate').textContent = data.display_hr;
+            document.getElementById('spO2').textContent = data.display_spo2;
+            document.getElementById('stress').textContent = data.stress;
+            
+            // Stress Progress Bar
+            const stressBar = document.getElementById('stressProgressBar');
+            if (stressBar) {
+                stressBar.style.width = Math.min(100, Math.max(0, data.stress)) + '%';
+                // Color based on stress
+                if (data.stress < 40) {
+                    stressBar.style.background = '#10b981'; // Green
+                    document.getElementById('stressStatus').textContent = 'Low';
+                    document.getElementById('stressStatus').className = 'reading-status status-excellent';
+                } else if (data.stress < 70) {
+                    stressBar.style.background = '#f59e0b'; // Yellow/Orange
+                    document.getElementById('stressStatus').textContent = 'Moderate';
+                    document.getElementById('stressStatus').className = 'reading-status status-good';
+                } else {
+                    stressBar.style.background = '#ef4444'; // Red
+                    document.getElementById('stressStatus').textContent = 'High';
+                    document.getElementById('stressStatus').className = 'reading-status status-low';
+                }
+            }
+
+            document.getElementById('temperature').textContent = data.display_bt;
+
+            const fakeHrv = Math.round(80 - data.stress * 0.5);
+            document.getElementById('hrv').textContent = fakeHrv;
+            
+            // Accelerometer & Gyro
+            if (document.getElementById('accelData')) {
+                document.getElementById('accelData').textContent = `X: ${data.display_ax} Y: ${data.display_ay} Z: ${data.display_az}`;
+            }
+            if (document.getElementById('gyroData')) {
+                document.getElementById('gyroData').textContent = `X: ${data.display_gx} Y: ${data.display_gy} Z: ${data.display_gz}`;
+            }
+            if (document.getElementById('activityStatus') && data.act) {
+                document.getElementById('activityStatus').textContent = data.act;
+            }
 
             // Add to chart
-            dataPoints.labels.push(timeLabel);
-            dataPoints.heartRate.push(hr);
-            dataPoints.spo2.push(spo2);
-            dataPoints.stress.push(stress);
+            const now = new Date();
+            const timeLabel = now.toLocaleTimeString('en-US', {
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            });
 
-            // Keep only last 20 points
+            dataPoints.labels.push(timeLabel);
+            dataPoints.heartRate.push(data.hr || 0);
+            dataPoints.spo2.push(data.spo2 || 0);
+            dataPoints.stress.push(data.stress || 0);
+
             if (dataPoints.labels.length > 20) {
                 dataPoints.labels.shift();
                 dataPoints.heartRate.shift();
@@ -326,48 +411,17 @@
                 dataPoints.stress.shift();
             }
 
-            // Update chart
             if (chart) {
                 chart.data.labels = dataPoints.labels;
                 chart.data.datasets[0].data = dataPoints.heartRate;
                 chart.data.datasets[1].data = dataPoints.spo2;
                 chart.data.datasets[2].data = dataPoints.stress;
-                chart.update('none'); // No animation for smoother updates
-            }
-        }
-
-        // Recording state
-        let isRecording = false;
-        let recordingInterval;
-
-        // Record button handler
-        document.getElementById('recordBtn')?.addEventListener('click', function () {
-            isRecording = !isRecording;
-
-            if (isRecording) {
-                this.innerHTML = '<i class="fas fa-stop"></i><span>Stop Recording</span>';
-                this.classList.add('recording');
-
-                // Start generating data every 2 seconds
-                recordingInterval = setInterval(generateDummyData, 2000);
-                generateDummyData(); // Initial data
-            } else {
-                this.innerHTML = '<i class="fas fa-circle"></i><span>Start Recording</span>';
-                this.classList.remove('recording');
-
-                // Stop generating data
-                clearInterval(recordingInterval);
+                chart.update('none');
             }
         });
 
-        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function () {
             initChart();
-
-            // Generate initial dummy data
-            for (let i = 0; i < 10; i++) {
-                generateDummyData();
-            }
         });
     </script>
 

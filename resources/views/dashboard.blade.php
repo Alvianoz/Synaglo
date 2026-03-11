@@ -306,9 +306,48 @@
         updateTime();
     </script>
 
-    <!-- API Integration Scripts -->
-    <script src="{{ asset('js/api-integration.js') }}"></script>
-    <script src="{{ asset('js/dashboard-integration.js') }}"></script>
+    <!-- Health API Script -->
+    <script src="{{ asset('js/health-api-client.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.healthApiClient) {
+                // Fetch trend data
+                window.healthApiClient.fetchAnalytics((data) => {
+                    if (data.labels && data.labels.length > 0) {
+                        updateHRVChart(data.labels, data.hrv || []);
+                        updateStressChart(data.labels, data.stress || []);
+                    }
+                });
+
+                // Poll latest data
+                window.healthApiClient.startPollingLatest((data) => {
+                    const hasFinger = data.finger === true || data.finger === 1 || data.finger === "true";
+                    
+                    const hrElem = document.getElementById('dashboardHR');
+                    if (hrElem) {
+                        hrElem.textContent = (!hasFinger || !data.hr) ? '--' : data.hr;
+                    }
+                    
+                    const spO2Elem = document.getElementById('dashboardSpO2');
+                    if (spO2Elem) {
+                        spO2Elem.textContent = (!hasFinger || !data.spo2) ? '--' : data.spo2;
+                    }
+                    
+                    const gsrElem = document.getElementById('dashboardGSR');
+                    if (gsrElem) gsrElem.textContent = data.stress ? (2.5 + (data.stress / 50)).toFixed(1) : '--';
+
+                    const tempElem = document.getElementById('dashboardTemp');
+                    if (tempElem) tempElem.textContent = data.bt ? parseFloat(data.bt).toFixed(1) : '--';
+                    
+                    const apiStatusIcon = document.getElementById('apiStatusIcon');
+                    if (apiStatusIcon) {
+                        apiStatusIcon.className = 'fas fa-wifi';
+                        apiStatusIcon.style.color = '#10b981';
+                    }
+                });
+            }
+        });
+    </script>
 
     <!-- Navbar Component -->
     <script src="{{ asset('js/components/navbar.js') }}"></script>
