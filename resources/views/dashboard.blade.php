@@ -60,12 +60,12 @@
                 <div class="biometric-icon">
                     <i class="fas fa-heart"></i>
                 </div>
-                <div class="biometric-value" id="dashboardHR">79</div>
+                <div class="biometric-value" id="dashboardHR">{{ $latestHealthData ? ($latestHealthData->hr ?? '--') : '--' }}</div>
                 <div class="biometric-label">
                     Heart Rate
                     <span class="metric-explanation">(Beats per minute)</span>
                 </div>
-                <div class="biometric-status status-normal" id="dashboardHRStatus">Loading...</div>
+                <div class="biometric-status status-normal" id="dashboardHRStatus">{{ $latestHealthData ? 'Updated recently' : 'Loading...' }}</div>
                 <div class="metric-info">
                     <small>Normal range: 60–100 bpm</small>
                 </div>
@@ -75,12 +75,12 @@
                 <div class="biometric-icon">
                     <i class="fas fa-moon"></i>
                 </div>
-                <div class="biometric-value" id="dashboardSpO2">96.36</div>
+                <div class="biometric-value" id="dashboardSpO2">{{ $latestHealthData ? ($latestHealthData->spo2 ?? '--') : '--' }}</div>
                 <div class="biometric-label">
                     Sleep Quality
                     <span class="metric-explanation">(Percentage of sleeping quality)</span>
                 </div>
-                <div class="biometric-status status-excellent" id="dashboardSpO2Status">Loading...</div>
+                <div class="biometric-status status-excellent" id="dashboardSpO2Status">{{ $latestHealthData ? 'Updated recently' : 'Loading...' }}</div>
                 <div class="metric-info">
                     <small>Normal range: 90–100%</small>
                 </div>
@@ -148,7 +148,7 @@
                     </div>
                     <div class="metric-info">
                         <span class="metric-label">Sweat Activity (GSR)</span>
-                        <div class="metric-value" id="dashboardGSR">--</div>
+                        <div class="metric-value" id="dashboardGSR">{{ $latestHealthData && $latestHealthData->stress ? number_format(2.5 + ($latestHealthData->stress / 50), 1) : '--' }}</div>
                         <div class="metric-unit">µS</div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="metric-info">
                         <span class="metric-label">Body Temperature</span>
-                        <div class="metric-value" id="dashboardTemp">--</div>
+                        <div class="metric-value" id="dashboardTemp">{{ $latestHealthData && $latestHealthData->bt ? number_format((float)$latestHealthData->bt, 1) : '--' }}</div>
                         <div class="metric-unit">Celsius</div>
                     </div>
                 </div>

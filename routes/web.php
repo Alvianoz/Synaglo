@@ -27,7 +27,9 @@ Route::post('/logout', function (\Illuminate\Http\Request $request) {
 // Protected routes - require authentication
 Route::middleware(['access'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $userId = Auth::id() ?? 1;
+        $latestHealthData = \App\Models\HealthData::where('user_id', $userId)->latest()->first();
+        return view('dashboard', compact('latestHealthData'));
     });
 
     Route::get('/test-gemini-key', function () {
